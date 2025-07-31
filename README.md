@@ -1,81 +1,131 @@
-# 2048-Game-with-Python
- The application is an implementation of the game 2048 using Tkinter, a graphical Python module. It creates a graphical interface where the user can move the numbered tiles using the arrow keys. The goal of the game is to combine the tiles until the value 2048 is obtained.
+# 🎮 2048 Game with Python (Tkinter)
 
-Tkinter is used to create the graphical interface.
-Random is used to place new tiles on the board.
+This project is a clean and functional implementation of the classic **2048 game**, built entirely with **Python** and the **Tkinter** GUI module.
 
+The objective of the game is simple: **combine tiles** by moving them with arrow keys until you reach the **2048** tile.
 
-• The Game2048 (Game Initialization):
-  
-The main class that manages the game logic and interface.
+---
 
-Creates a main window for the game.
+## 📦 Technologies Used
 
-Binds keyboard events to the handle_key function, which detects arrow presses.
+- `tkinter` – For graphical user interface (GUI)
+- `random` – For generating new tiles (2 or 4)
 
-The game board is represented by a 4x4 matrix filled with 0's.
+---
 
-The score starts from 0.
+## 🚀 How It Works
 
+### 🧱 Class: `Game2048`
 
- 
-• Creating the graphical interface - def init_grid(self):
+The main class that handles both the game logic and interface.
 
-This function visually creates a 4x4 grid using Label from Tkinter.
+✅ Creates the game window
 
-A Label is created for each cell.
+✅ Initializes a 4x4 matrix (`grid`) filled with 0s
 
-It is saved in a two-dimensional list self.tiles.
+✅ Sets the initial score to 0
 
+✅ Binds arrow key presses (`↑ ↓ ← →`) to tile movement
 
-• Add a new tile (2 or 4) - def add_tile(self):
+---
 
-This function randomly chooses an empty cell and adds a new tile.
+## 🎮 Key Functions
 
-Creates a list of all empty cells (with value 0).
+### 📊 `init_grid(self)`
 
-Selects a random cell and assigns it 2 (90% chance) or 4 (10% chance).
+- Creates the **visual grid** using Tkinter `Label` widgets
+- Stores the GUI tiles in `self.tiles` as a 2D list
 
+---
 
- 
-• Update the display - def update_grid(self):
+### 🎲 `add_tile(self)`
 
-This function updates the values in the interface.
+- Identifies all empty cells (`value == 0`)
+- Randomly places a new tile (90% chance of 2, 10% chance of 4)
 
-If the cell is empty, it colors it gray.
+---
 
-If the cell has a value, it displays the number and colors it light blue.
+### 🔁 `update_grid(self)`
 
+- Updates the GUI based on the matrix (`self.grid`)
+- Colors:
+  - Empty = gray
+  - Tile = light blue with number
 
-• Detect keys and move pieces - def handle_key(self, event):
+---
 
-This function handles moving the tiles when the user presses the arrow keys.
+### 🎯 `handle_key(self, event)`
 
-It moves the tiles and adds a new tile with each move.
+- Handles arrow key input
+- Triggers `move_tiles()`
+- Adds a new tile after each valid move
+- Checks for game over
 
-If no more moves are possible, displays the message "Game Over".
+---
 
+### 🔄 `move_tiles(self, direction)`
 
-• Move logic - def move_tiles(self, direction):
+- Logic for merging tiles:
+  - `Up`: Transpose → Merge → Transpose back
+  - `Down`: Transpose + Reverse → Merge → Reverse + Transpose back
+  - `Left`: Merge directly
+  - `Right`: Reverse → Merge → Reverse back
 
-This function moves and combines tiles in the desired direction.
+---
 
-Up: Uses transpose to move the tiles as if they were rows.
+### ❌ `check_game_over(self)`
 
-Down: This is similar to Up, but also includes row reversal.
+- Verifies if there are no moves left:
+  - No empty cells
+  - No adjacent equal tiles (horizontal or vertical)
+- If true: prints `"Game Over!"` with final score
 
-Left moves and combines normally.
+---
 
-Right reverses rows, moves, then reverses back.
+### 🧠 Utilities
 
+- `transpose(matrix)`: Swaps rows and columns
+- `reverse(matrix)`: Reverses each row
 
-• Check game over - def check_game_over(self):
+---
 
-This function checks for possible moves.
+## ▶️ How to Run
 
-If there are no more possible moves, the game ends.
+Save the file as `2048.py` and run:
 
+```bash
+python 2048.py
+```
 
-• Starting the game - def main():
+---
 
-Creates the window and starts the game.
+## ⌨️ Controls
+⬆️ Up Arrow – Move tiles up
+
+⬇️ Down Arrow – Move tiles down
+
+⬅️ Left Arrow – Move tiles left
+
+➡️ Right Arrow – Move tiles right
+
+---
+
+## 🔧 Possible Improvements
+- Add color variation based on tile value
+
+- Display current score and high score in the window
+
+- Add restart/new game button
+
+- Use a popup for Game Over instead of printing to console
+
+- Add animations for smoother transitions
+
+---
+
+## 👤 Author
+Created by CristiC7
+
+Focused on clean Python GUI projects with classic game logic.
+
+Feel free to fork, customize, or contribute!
